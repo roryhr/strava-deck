@@ -9,20 +9,20 @@ else
   echo ".env file not found!"
 fi
 
-# Create a subscription
-curl -X POST \
-  https://www.strava.com/api/v3/push_subscriptions \
-  -F client_id="$STRAVA_CLIENT_ID" \
-  -F client_secret="$STRAVA_CLIENT_SECRET" \
-  -F callback_url=https://strava-deck.fly.dev/webhook \
-  -F verify_token=STRAVA
+## Create a subscription
+#curl -X POST \
+#  https://www.strava.com/api/v3/push_subscriptions \
+#  -F client_id="$STRAVA_CLIENT_ID" \
+#  -F client_secret="$STRAVA_CLIENT_SECRET" \
+#  -F callback_url=https://strava-deck.fly.dev/webhook \
+#  -F verify_token=STRAVA
 
 
-## View a subscription
-#curl -sG https://www.strava.com/api/v3/push_subscriptions \
-#  -d client_id="$STRAVA_CLIENT_ID"  \
-#  -d client_secret="$STRAVA_CLIENT_SECRET" \
-#  | jq
+# View a subscription
+curl -sG https://www.strava.com/api/v3/push_subscriptions \
+  -d client_id="$STRAVA_CLIENT_ID"  \
+  -d client_secret="$STRAVA_CLIENT_SECRET" \
+  | jq
 
 
 ### Delete a subscription
@@ -44,6 +44,3 @@ curl -X POST \
 #    "owner_id": 9999999,
 #    "subscription_id": 999999
 #  }'
-
-
-# find . -type f ! -path "./.git/*" ! -path "./.idea/*" -exec file --mime {} \; | grep 'text/' | cut -d: -f1 | xargs -I{} sh -c 'echo -e "\n===== {} =====\n"; cat {}' | ollama run llama3.2 "Add a create title form to the index page"
